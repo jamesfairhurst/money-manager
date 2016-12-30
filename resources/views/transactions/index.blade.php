@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="page-header">
-        <a href="{{ url('transactions/create') }}" class="btn btn-default btn-primary pull-right">
+        <a href="{{ url('transactions/create') }}" class="btn btn-primary pull-right">
             <i class="fa fa-btn fa-plus"></i> Add Transaction
         </a>
         <h1>Transactions</h1>
