@@ -1,5 +1,7 @@
 # Money Manager
 
+[![Build Status](https://travis-ci.org/jamesfairhurst/money-manager.svg?branch=master)](https://travis-ci.org/jamesfairhurst/money-manager)
+
 I wanted a way to easily manage, track & tag my money so I'm building this little app to do it for me. I've been through a number of iterations but never to completion and I keep over complicating things so **this time** I'm going to follow through!
 
 The very basics are:
