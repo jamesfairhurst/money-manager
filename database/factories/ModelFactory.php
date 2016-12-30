@@ -22,3 +22,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Transaction::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->words(3, true),
+        'description' => $faker->paragraph,
+        'date' => $faker->dateTimeBetween('-2 months')->format('Y-m-d'),
+        'amount' => $faker->randomFloat(2, 1, 1000),
+    ];
+});
