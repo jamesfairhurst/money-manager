@@ -7,7 +7,7 @@ I wanted a way to easily manage, track & tag my money so I'm building this littl
 The very basics are:
 
 - Transactions
-    + Index, add, edit & delete
+    + ~~Index, add, edit & delete~~
     + Import from csv (bank statements)
 - Tags
     + Index, add, edit & delete
