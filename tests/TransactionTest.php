@@ -23,7 +23,7 @@ class TransactionTest extends TestCase
              ->see($transactions->first()->name);
     }
 
-    public function testNewTransaction()
+    public function testAddTransaction()
     {
         $this->visit('/transactions/create')
              ->type('Food shop', 'name')
@@ -33,5 +33,16 @@ class TransactionTest extends TestCase
              ->press('Add Transaction')
              ->seePageIs('/transactions')
              ->see('Transaction added!');
+    }
+
+    public function testEditTransaction()
+    {
+        $transaction = factory(App\Transaction::class)->create();
+
+        $this->visit('/transactions/1/edit')
+             ->type(50, 'amount')
+             ->press('Edit Transaction')
+             ->seePageIs('/transactions')
+             ->see('Transaction updated!');
     }
 }
