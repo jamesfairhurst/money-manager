@@ -12,4 +12,12 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = ['name', 'description', 'date', 'amount'];
+
+    /**
+     * The tags that belong to the transaction.
+     */
+    public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 }

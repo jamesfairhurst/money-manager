@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('transactions', 'TransactionController');
+Route::resource('tags', 'TagController');

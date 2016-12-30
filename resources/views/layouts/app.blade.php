@@ -28,6 +28,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/transactions') }}">Transactions</a></li>
+                        <li><a href="{{ url('/tags') }}">Tags</a></li>
                     </ul>
                 </div>
             </div>
