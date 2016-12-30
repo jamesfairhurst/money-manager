@@ -16,7 +16,7 @@ class TransactionTest extends TestCase
 
     public function testTransactionsInDb()
     {
-        $transactions = factory(App\Transaction::class, 20)->create();
+        $transactions = factory(App\Transaction::class, 20)->create()->sortByDesc('date');
 
         $this->visit('/transactions')
              ->see($transactions->first()->name);
