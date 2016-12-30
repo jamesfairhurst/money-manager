@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('dashboard');
 });
+
+Route::resource('transactions', 'TransactionController');
