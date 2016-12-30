@@ -27,7 +27,7 @@
                 <td>{{ $transaction->amount }}</td>
                 <td class="text-right">
                     <a href="{{ url('transactions', [$transaction->id, 'edit']) }}" class="btn btn-default">Edit</a>
-                    <form action="{{ url('transactions/' . $transaction->id) }}" method="POST" class="visible-xs-inline visible-sm-inline visible-md-inline visible-lg-inline">
+                    <form action="{{ url('transactions/' . $transaction->id) }}" method="POST" class="visible-xs-inline visible-sm-inline visible-md-inline visible-lg-inline" onclick="return confirm('Are you sure?')">
                         {!! csrf_field() !!}
                         {!! method_field('DELETE') !!}
 

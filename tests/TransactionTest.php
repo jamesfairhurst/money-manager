@@ -45,4 +45,14 @@ class TransactionTest extends TestCase
              ->seePageIs('/transactions')
              ->see('Transaction updated!');
     }
+
+    public function testDeleteTransaction()
+    {
+        $transaction = factory(App\Transaction::class)->create();
+
+        $this->visit('/transactions')
+             ->press('Delete')
+             ->seePageIs('/transactions')
+             ->see('Transaction deleted!');
+    }
 }
