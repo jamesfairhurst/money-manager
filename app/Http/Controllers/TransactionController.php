@@ -26,7 +26,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        return view('transactions.create');
     }
 
     /**
@@ -37,7 +37,21 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'date' => 'required|date',
+            'amount' => 'required|numeric',
+        ]);
+
+        $transaction = Transaction::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'date' => $request->date,
+            'amount' => $request->amount,
+        ]);
+
+        return redirect('transactions')
+            ->withSuccess('Transaction added!');
     }
 
     /**
