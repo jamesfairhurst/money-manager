@@ -10,7 +10,7 @@ The very basics are:
     + ~~Index, add, edit & delete~~
     + Import from csv (bank statements)
 - Tags
-    + Index, add, edit & delete
+    + ~~Index, add, edit & delete~~
     + Attach Tags to Transactions and vice versa
 - Dashboard
     + Graphs of top tags
