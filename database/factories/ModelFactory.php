@@ -32,3 +32,10 @@ $factory->define(App\Transaction::class, function (Faker\Generator $faker) {
         'amount' => $faker->randomFloat(2, 1, 1000),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Tag::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
