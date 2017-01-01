@@ -45,6 +45,10 @@ class TagController extends Controller
             'name' => $request->name
         ]);
 
+        if (!empty($request->transactions)) {
+            $tag->transactions()->attach($request->transactions);
+        }
+
         return redirect('tags')
             ->withSuccess('Tag added!');
     }
@@ -75,6 +79,10 @@ class TagController extends Controller
 
         $tag->fill($request->all());
         $tag->save();
+
+        if (!empty($request->transactions)) {
+            $tag->transactions()->sync($request->transactions);
+        }
 
         return redirect('tags')
             ->withSuccess('Tag updated!');

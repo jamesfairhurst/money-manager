@@ -24,6 +24,24 @@
             </div>
         </div>
 
+        <div class="form-group{{ $errors->has('transactions') ? ' has-error' : '' }}">
+            <label for="transactions" class="col-sm-3 control-label">Transactions</label>
+
+            <div class="col-sm-6">
+                <select name="transactions[]" multiple class="form-control">
+                    @foreach (App\Transaction::orderBy('date', 'desc')->get() as $transaction)
+                    <option value="{{ $transaction->id }}"{{ in_array($transaction->id, old('transactions', $tag->transactions->pluck('id')->toArray())) ? ' selected' : '' }}>{{ $transaction->name . ' (' . $transaction->amount . ')' }}</option>
+                    @endforeach
+                </select>
+
+                @if ($errors->has('transactions'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('transactions') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-6">
                 <a href="{{ url('tags') }}" class="btn btn-default">

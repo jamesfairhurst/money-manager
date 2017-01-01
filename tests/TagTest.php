@@ -1,5 +1,7 @@
 <?php
 
+use App\Tag;
+use App\Transaction;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -17,7 +19,7 @@ class TagTest extends TestCase
 
     public function testTagsInDb()
     {
-        $tags = factory(App\Tag::class, 20)->create()->sortBy('name');
+        $tags = factory(Tag::class, 20)->create()->sortBy('name');
 
         $this->visit('/tags')
              ->see($tags->first()->name);
@@ -34,7 +36,7 @@ class TagTest extends TestCase
 
     public function testEditTag()
     {
-        $tag = factory(App\Tag::class)->create();
+        $tag = factory(Tag::class)->create();
 
         $this->visit('/tags/1/edit')
              ->type('Foods', 'name')
@@ -45,11 +47,25 @@ class TagTest extends TestCase
 
     public function testDeleteTag()
     {
-        $tag = factory(App\Tag::class)->create();
+        $tag = factory(Tag::class)->create();
 
         $this->visit('/tags')
              ->press('Delete')
              ->seePageIs('/tags')
              ->see('Tag deleted!');
+    }
+
+    public function testAddTagWithTransactions()
+    {
+        $transaction = factory(Transaction::class)->create();
+
+        $this->visit('/tags/create')
+             ->type('Food', 'name')
+             ->select(1, 'transactions[]')
+             ->press('Add Tag')
+             ->seePageIs('/tags')
+             ->see('Tag added!');
+
+        $this->assertEquals(1, Tag::find(1)->transactions()->count());
     }
 }
