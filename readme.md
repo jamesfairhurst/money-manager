@@ -11,7 +11,7 @@ The very basics are:
     + Import from csv (bank statements)
 - Tags
     + ~~Index, add, edit & delete~~
-    + Attach Tags to Transactions and vice versa
+    + ~~Attach Tags to Transactions and vice versa~~
 - Dashboard
     + Graphs of top tags
     + Week/month/year filters
