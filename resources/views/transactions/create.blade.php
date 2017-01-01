@@ -65,6 +65,20 @@
             </div>
         </div>
 
+        <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
+            <label for="tags" class="col-sm-3 control-label">Tags</label>
+
+            <div class="col-sm-6">
+                <input id="tags" type="text" name="tags" value="{{ old('tags') }}" placeholder="Food, Home" class="form-control">
+
+                @if ($errors->has('tags'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('tags') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-6">
                 <a href="{{ url('transactions') }}" class="btn btn-default">
