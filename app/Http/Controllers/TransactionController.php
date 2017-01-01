@@ -50,6 +50,10 @@ class TransactionController extends Controller
             'amount' => $request->amount,
         ]);
 
+        if (!empty($request->tags)) {
+            $transaction->saveTags($request->tags);
+        }
+
         return redirect('transactions')
             ->withSuccess('Transaction added!');
     }
@@ -82,6 +86,10 @@ class TransactionController extends Controller
 
         $transaction->fill($request->all());
         $transaction->save();
+
+        if (!empty($request->tags)) {
+            $transaction->saveTags($request->tags);
+        }
 
         return redirect('transactions')
             ->withSuccess('Transaction updated!');
