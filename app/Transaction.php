@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
@@ -55,5 +56,53 @@ class Transaction extends Model
         }
 
         return implode(', ', $tags->toArray());
+    }
+
+    /**
+     * This week's Transactions
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWeek($query)
+    {
+        return $query->where('date', '>=', Carbon::now()->startOfWeek()->format('Y-m-d'))
+            ->where('date', '<=', Carbon::now()->endOfWeek()->format('Y-m-d'));
+    }
+
+    /**
+     * Last week's Transactions
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLastWeek($query)
+    {
+        return $query->where('date', '>=', Carbon::now()->startOfWeek()->subWeek()->format('Y-m-d'))
+            ->where('date', '<=', Carbon::now()->endOfWeek()->subWeek()->format('Y-m-d'));
+    }
+
+    /**
+     * This month's Transactions
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeMonth($query)
+    {
+        return $query->where('date', '>=', Carbon::now()->startOfMonth()->format('Y-m-d'))
+            ->where('date', '<=', Carbon::now()->endOfMonth()->format('Y-m-d'));
+    }
+
+    /**
+     * This month's Transactions
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeLastMonth($query)
+    {
+        return $query->where('date', '>=', Carbon::now()->startOfMonth()->subMonth()->format('Y-m-d'))
+            ->where('date', '<=', Carbon::now()->endOfMonth()->subMonth()->format('Y-m-d'));
     }
 }
