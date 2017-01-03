@@ -6,6 +6,10 @@
         <a href="{{ url('transactions/create') }}" class="btn btn-primary pull-right">
             <i class="fa fa-btn fa-plus"></i> Add Transaction
         </a>
+
+        <a href="{{ url('transactions/import') }}" class="btn btn-default pull-right" style="margin-right: 5px;">
+            <i class="fa fa-btn fa-upload"></i> Import Transactions
+        </a>
         <h1>Transactions</h1>
     </div>
 

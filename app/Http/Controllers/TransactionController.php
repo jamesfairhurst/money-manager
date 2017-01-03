@@ -108,4 +108,14 @@ class TransactionController extends Controller
         return redirect('transactions')
             ->withSuccess('Transaction deleted!');
     }
+
+    /**
+     * Display an import form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import()
+    {
+        return view('transactions.import');
+    }
 }
