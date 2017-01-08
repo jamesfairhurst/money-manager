@@ -205,17 +205,17 @@ class TransactionController extends Controller
                 ->withDanger('CSV not uploaded!');
         }
 
-        if (!$request->get('rows')) {
+        if (!$request->input('rows')) {
             return redirect('transactions/import')
                 ->withInput()
                 ->withDanger('Select transactions to import!');
         }
 
         // Get field types
-        $name = array_search('name', $request->get('types'));
-        $description = array_search('description', $request->get('types'));
-        $date = array_search('date', $request->get('types'));
-        $amount = array_search('amount', $request->get('types'));
+        $name = array_search('name', $request->input('types'));
+        $description = array_search('description', $request->input('types'));
+        $date = array_search('date', $request->input('types'));
+        $amount = array_search('amount', $request->input('types'));
 
         if (!($name !== false && $date !== false && $amount !== false)) {
             return redirect('transactions/import')
@@ -225,7 +225,7 @@ class TransactionController extends Controller
 
         $csv = Reader::createFromPath(storage_path('app/' . $request->session()->get('csv')))->fetchAll();
 
-        $checkedRows = collect($csv)->only($request->get('rows'));
+        $checkedRows = collect($csv)->only($request->input('rows'));
 
         foreach ($checkedRows as $row) {
             $transaction = Transaction::create([
