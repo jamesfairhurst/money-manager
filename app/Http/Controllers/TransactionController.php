@@ -227,13 +227,17 @@ class TransactionController extends Controller
 
         $checkedRows = collect($csv)->only($request->input('rows'));
 
-        foreach ($checkedRows as $row) {
+        foreach ($checkedRows as $key => $row) {
             $transaction = Transaction::create([
                 'name' => $row[$name],
                 'description' => (isset($row[$description])) ? $row[$description] : null,
                 'date' => Carbon::parse($row[$date])->format('Y-m-d'),
                 'amount' => $row[$amount],
             ]);
+
+            if (!empty($request->input('tags.' . $key))) {
+                $transaction->saveTags($request->input('tags.' . $key));
+            }
         }
 
         Storage::delete($request->session()->get('csv'));
