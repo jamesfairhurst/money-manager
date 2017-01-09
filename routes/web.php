@@ -50,5 +50,8 @@ Route::get('/', function () {
     return view('dashboard', ['tagsThisMonth' => $tagsThisMonth, 'tagsThisWeek' => $tagsThisWeek]);
 });
 
+Route::get('transactions/import', 'TransactionController@import');
+Route::post('transactions/import-file', 'TransactionController@postImportFile');
+Route::post('transactions/import-transactions', 'TransactionController@postImportTransactions');
 Route::resource('transactions', 'TransactionController');
 Route::resource('tags', 'TagController');

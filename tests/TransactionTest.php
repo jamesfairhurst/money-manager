@@ -71,4 +71,10 @@ class TransactionTest extends TestCase
 
         $this->assertEquals(2, Transaction::find(1)->tags()->count());
     }
+
+    public function testTransactionsImportPage()
+    {
+        $this->visit('/transactions/import')
+             ->see('Import Transactions');
+    }
 }
