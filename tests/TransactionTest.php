@@ -1,6 +1,7 @@
 <?php
 
 use App\Transaction;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -76,5 +77,29 @@ class TransactionTest extends TestCase
     {
         $this->visit('/transactions/import')
              ->see('Import Transactions');
+    }
+
+    public function testTransactionsPageWithTags()
+    {
+        $transactions = factory(Transaction::class, 5)
+                            ->create()
+                            ->each(function ($t) {
+                                $t->tags()->save(factory(App\Tag::class)->make());
+                            });
+
+        $this->visit('/transactions')
+             ->see($transactions->first()->tags->first()->name);
+    }
+
+    public function testTransactionsPageWithTagFilter()
+    {
+        $transactions = factory(Transaction::class, 5)
+                            ->create()
+                            ->each(function ($t) {
+                                $t->tags()->save(factory(App\Tag::class)->make());
+                            });
+
+        $numberOfTransactionsRows = $this->visit('/transactions?tag=' . Tag::all()->first()->id)->crawler()->filter('tbody > tr')->count();
+        $this->assertEquals(count(Tag::all()->first()->transactions), $numberOfTransactionsRows);
     }
 }

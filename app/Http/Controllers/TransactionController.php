@@ -14,12 +14,21 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $transactions = Transaction::with('tags')->orderBy('date', 'desc');
+
+        if ($request->has('tag')) {
+            $transactions->whereHas('tags', function ($query) use ($request) {
+                $query->where('tags.id', $request->input('tag'));
+            });
+        }
+
         return view('transactions.index', [
-            'transactions' => Transaction::orderBy('date', 'desc')->paginate()
+            'transactions' => $transactions->paginate()
         ]);
     }
 
