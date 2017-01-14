@@ -76,7 +76,7 @@
                         @foreach ($row as $cell)
                         <td>{{ $cell }}</td>
                         @endforeach
-                        <td><input type="name" name="tags[{{ $key }}]" class="form-control"></td>
+                        <td><input type="name" name="tags[{{ $key+1 }}]" class="form-control"></td>
                         <td><input type="checkbox" name="rows[]" value="{{ $key+1 }}"></td>
                     </tr>
                     @endforeach
