@@ -9,7 +9,7 @@
         <h1>Tags</h1>
     </div>
 
-    <table class="table table-striped">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Name</th>

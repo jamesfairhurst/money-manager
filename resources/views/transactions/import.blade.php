@@ -46,7 +46,7 @@
         <form action="{{ url('transactions/import-transactions') }}" method="POST">
             {{ csrf_field() }}
 
-            <table class="table">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
                         @foreach ($csv[0] as $cell)
