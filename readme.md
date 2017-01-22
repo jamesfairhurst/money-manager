@@ -8,7 +8,8 @@ The very basics are:
 
 - Transactions
     + ~~Index, add, edit & delete~~
-    + Import from csv (bank statements)
+    + ~~Import from csv (bank statements)~~
+    + Index filters
 - Tags
     + ~~Index, add, edit & delete~~
     + ~~Attach Tags to Transactions and vice versa~~
