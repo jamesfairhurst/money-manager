@@ -7,7 +7,7 @@
 
         <title>Money Manager</title>
 
-         <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
+        <link rel="stylesheet" href="{{ elixir('css/app.css') }}">
     </head>
     <body>
         <nav class="navbar navbar-default navbar-static-top">
