@@ -20,7 +20,7 @@ The very basics are:
 Possible future extras are:
 
 - Transactions
-    + Upload image per transaction (reciepts)
+    + Upload image per transaction (receipt)
         * Simple file uploads via add/edit form
         * Dropbox integration
 - Accounts
