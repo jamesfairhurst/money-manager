@@ -72,7 +72,7 @@
                 </thead>
                 <tbody>
                     @foreach (array_slice($csv, 1) as $key => $row)
-                    <tr>
+                    <tr class="{{ (isset($row[collect($headingRows)->search('numeric')]) && $row[collect($headingRows)->search('numeric')] < 0) ? 'info' : '' }}">
                         @foreach ($row as $cell)
                         <td>{{ $cell }}</td>
                         @endforeach
