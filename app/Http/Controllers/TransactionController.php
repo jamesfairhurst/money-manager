@@ -132,6 +132,7 @@ class TransactionController extends Controller
     {
         $csv = [];
         $headingRows = [];
+        $duplicates = [];
 
         if ($request->has('reset')) {
             Storage::delete($request->session()->get('csv'));
@@ -186,9 +187,20 @@ class TransactionController extends Controller
                     }
                 }
             }
+
+            // Look up duplicates
+            $dateKey = collect($headingRows)->search('date');
+            $numericKey = collect($headingRows)->search('numeric');
+
+            foreach (array_slice($csv, 1) as $key => $cell) {
+                $duplicates[$key+1] = Transaction::where([
+                    'date' => Carbon::parse($cell[$dateKey])->format('Y-m-d'),
+                    'amount' => $cell[$numericKey]]
+                )->first();
+            }
         }
 
-        return view('transactions.import', ['csv' => $csv, 'headingRows' => $headingRows]);
+        return view('transactions.import', ['csv' => $csv, 'headingRows' => $headingRows, 'duplicates' => $duplicates]);
     }
 
     /**

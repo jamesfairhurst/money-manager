@@ -52,6 +52,7 @@
                         @foreach ($csv[0] as $cell)
                         <th>{{ $cell }}</th>
                         @endforeach
+                        <th>Duplicate?</th>
                         <th>Tags</th>
                         <th>Import?</th>
                     </tr>
@@ -67,7 +68,7 @@
                             </select>
                         </th>
                         @endforeach
-                        <th colspan="2"></th>
+                        <th colspan="3"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -76,6 +77,7 @@
                         @foreach ($row as $cell)
                         <td>{{ $cell }}</td>
                         @endforeach
+                        <td>{!! (isset($duplicates[$key+1])) ? '<a href="' . url('transactions/' . $duplicates[$key+1]->id . '/edit') . '">View</a>' : ''  !!}</td>
                         <td><input type="name" name="tags[{{ $key+1 }}]" class="form-control"></td>
                         <td class="text-center"><input type="checkbox" name="rows[]" value="{{ $key+1 }}"></td>
                     </tr>
