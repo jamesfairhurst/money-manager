@@ -143,6 +143,20 @@ class TransactionController extends Controller
         if ($request->session()->has('csv')) {
             $csv = Reader::createFromPath(storage_path('app/' . $request->session()->get('csv')))->fetchAll();
 
+            // Get max cell count
+            $maxCellCount = collect($csv)->map(function ($item, $key) {
+                return count($item);
+            })->max();
+
+            // Pad array
+            $csv = collect($csv)->map(function ($item, $key) use ($maxCellCount) {
+                if (count($item) != $maxCellCount) {
+                    $item = array_pad($item, $maxCellCount, '');
+                }
+
+                return $item;
+            })->toArray();
+
             // Try to determine what the cells are
             foreach ($csv[1] as $key => $cell) {
                 $cell = trim($cell);
